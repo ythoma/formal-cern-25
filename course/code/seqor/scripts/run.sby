@@ -1,0 +1,25 @@
+[tasks]
+cover
+bmc
+prove
+
+[options]
+mode bmc
+depth 20
+
+cover: mode cover
+bmc: mode bmc
+prove: mode prove
+
+[engines]
+cover: smtbmc z3
+bmc: abc bmc3
+prove: abc pdr
+
+[script]
+ghdl --std=08 -fpsl sequencer.vhd psl_sequence.vhd -e psl_sequence
+prep -top psl_sequence
+
+[files]
+../src_vhdl/sequencer.vhd
+../src_vhdl/psl_sequence.vhd

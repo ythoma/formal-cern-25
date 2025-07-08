@@ -1,0 +1,12 @@
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+vunit timer_psl(timer) {
+
+    default clock is rising_edge(clk);
+
+}
+
+

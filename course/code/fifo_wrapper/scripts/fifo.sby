@@ -1,0 +1,26 @@
+[tasks]
+cover
+bmc
+prove
+
+[options]
+mode bmc
+depth 40
+
+cover: mode cover
+bmc: mode bmc
+prove: mode prove
+
+[engines]
+cover: smtbmc z3
+bmc: abc bmc3
+prove: abc pdr
+
+[script]
+ghdl --std=08  -gDATASIZE=1 -gFIFOSIZE=4 -fpsl fifo.vhd fifo_wrapper.vhd fifo.psl -e fifo_wrapper
+prep -top fifo_wrapper
+
+[files]
+../src_vhdl/fifo.vhd
+../src_tb/fifo_wrapper.vhd
+../src_tb/fifo.psl

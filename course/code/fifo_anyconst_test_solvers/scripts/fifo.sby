@@ -1,0 +1,92 @@
+[tasks]
+cover1
+cover2
+bmc1a
+bmc1b
+bmc1c
+bmc1d
+bmc1e
+bmc1f
+bmc1g
+bmc2
+bmc3
+bmc4
+bmc5
+bmc6
+prove1a
+prove1b
+prove1c
+prove1d
+prove1e
+prove1f
+prove1g
+prove2
+prove3
+prove4
+prove5
+
+[options]
+depth 30
+
+cover1: mode cover
+cover2: mode cover
+bmc1a: mode bmc
+bmc1b: mode bmc
+bmc1c: mode bmc
+bmc1d: mode bmc
+bmc1e: mode bmc
+bmc1f: mode bmc
+bmc1g: mode bmc
+bmc2: mode bmc
+bmc3: mode bmc
+bmc4: mode bmc
+bmc5: mode bmc
+bmc6: mode bmc
+prove1a: mode prove
+prove1b: mode prove
+prove1c: mode prove
+prove1d: mode prove
+prove1e: mode prove
+prove1f: mode prove
+prove1g: mode prove
+prove2: mode prove
+prove3: mode prove
+prove4: mode prove
+prove5: mode prove
+
+
+[engines]
+cover1: smtbmc z3
+cover2: btor btormc
+bmc1a: smtbmc yices
+bmc1b: smtbmc boolector
+bmc1c: smtbmc bitwuzla
+bmc1d: smtbmc z3
+bmc1e: smtbmc mathsat
+bmc1f: smtbmc cvc4
+bmc1g: smtbmc cvc5
+bmc2: btor btormc
+bmc3: btor pono
+bmc4: abc bmc3
+bmc5: abc sim3
+bmc6: aiger aigbmc
+
+prove1a: smtbmc yices
+prove1b: smtbmc boolector
+prove1c: smtbmc bitwuzla
+prove1d: smtbmc z3
+prove1e: smtbmc mathsat
+prove1f: smtbmc cvc4
+prove1g: smtbmc cvc5
+prove2: abc pdr
+prove3: aiger avy
+prove4: aiger rIC3
+prove5: aiger suprove
+
+[script]
+ghdl --std=08  -gDATASIZE=1 -gFIFOSIZE=4 -fpsl fifo.vhd fifo.psl -e fifo
+prep -top fifo
+
+[files]
+../src_vhdl/fifo.vhd
+../src_tb/fifo.psl

@@ -1,0 +1,34 @@
+[tasks]
+cover
+prove1
+prove2
+prove4
+prove16
+
+[options]
+depth 20
+
+cover: mode cover
+prove1: mode prove
+prove2: mode prove
+prove4: mode prove
+prove16: mode prove
+
+[engines]
+cover: smtbmc z3
+prove1: abc pdr
+prove2: abc pdr
+prove4: abc pdr
+prove16: abc pdr
+
+[script]
+cover: ghdl -gSIZE=16 --std=08 -fpsl alu.vhd alu.psl -e alu
+prove1: ghdl -gSIZE=1 --std=08 -fpsl alu.vhd alu.psl -e alu
+prove2: ghdl -gSIZE=2 --std=08 -fpsl alu.vhd alu.psl -e alu
+prove4: ghdl -gSIZE=4 --std=08 -fpsl alu.vhd alu.psl -e alu
+prove16: ghdl -gSIZE=16 --std=08 -fpsl alu.vhd alu.psl -e alu
+prep -top alu
+
+[files]
+../src_vhdl/alu.vhd
+../src_vhdl/alu.psl

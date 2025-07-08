@@ -1,0 +1,68 @@
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+vunit fifo_assertions_psl(fifo_wrapper) {
+
+    default clock is rising_edge(clk_i);
+
+    assume rst_i;
+
+    assume always (not(wr_i and rd_i));
+
+    signal wcnt: integer := 0;
+    signal rcnt: integer := 0;
+
+    signal full_s: std_logic;
+    signal empty_s: std_logic;
+
+
+    constant NB_ACCESS : integer := 4 * FIFOSIZE;
+
+
+    process(clk_i, rst_i) is
+    begin
+        if rst_i = '1' then
+            rcnt <= 0;
+            wcnt <= 0;
+        elsif rising_edge(clk_i) then
+            if rd_i = '1' and empty_o = '0' then
+                rcnt <= rcnt + 1;
+            end if;
+            if wr_i = '1' and full_o = '0' then
+                wcnt <= wcnt + 1;
+            end if;
+        end if;
+    end process;
+
+    assume always (stable(s_data));
+    assume always (stable(s_cnt));
+
+    assume always (wcnt < NB_ACCESS + 1);
+    assume always (rcnt < NB_ACCESS + 1);
+    assume always (s_cnt < NB_ACCESS + 1);
+
+
+    p_not_empty_after_write: assert always ((wr_i) |=> not(empty_o)) abort rst_i;
+
+    full_s <= '1' when (wcnt = rcnt + FIFOSIZE) else '0';
+    empty_s <= '1' when (wcnt = rcnt) else '0';
+
+    p_full: assert always (full_o = full_s);
+
+    p_empty: assert always (empty_o = empty_s);
+
+
+    p_data: assert always (((wr_i ='1') and (s_data = data_i) and (s_cnt=wcnt) and (full_o = '0')) |=> 
+        ({rd_i = '0';(rd_i = '1' and (empty_o = '0') and (s_cnt=rcnt))} |-> (data_o = s_data))) abort rst_i;
+
+
+    p_data2: assert always ({((wr_i ='1') and (full_o = '0')  and (s_data = data_i) and (s_cnt=wcnt));
+                             [*0 to inf];
+                             (rd_i = '1' and (s_cnt=rcnt) and (empty_o = '0'))} |-> (data_o = s_data)) abort rst_i;
+
+
+    p_data3: assert always (((wr_i ='1') and (s_data = data_i) and (s_cnt=wcnt) and (full_o = '0')) |=> 
+        next_event((rd_i = '1') and (empty_o = '0') and (s_cnt=rcnt))(data_o = s_data)) abort rst_i;
+}

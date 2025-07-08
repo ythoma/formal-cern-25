@@ -1,0 +1,9 @@
+vunit elevator_fsm_psl(elevator_fsm(fsm)) {
+
+
+    default clock is rising_edge(clk_i);
+
+    assume {rst_i};
+
+}
+

@@ -1,0 +1,26 @@
+[tasks]
+cover
+prove
+
+[options]
+
+prove: mode prove
+cover: mode cover
+
+[engines]
+cover: smtbmc z3
+prove: abc pdr
+
+[script]
+ghdl --std=08 --work=aff_min_max affichage.vhd -e affichage
+ghdl --std=08 --work=aff_min_max bin_lin.vhd -e bin_lin
+ghdl --std=08 --work=aff_min_max comparator_8bits.vhd -e comparator_4bits
+ghdl --std=08 -gERRNO=0 min_max_top.vhd min_max.psl -e min_max_top
+prep -top Min_Max_top
+
+[files]
+../src/affichage.vhd
+../src/bin_lin.vhd
+../src/comparator_8bits.vhd
+../src/min_max_top.vhd
+../src_tb/min_max.psl

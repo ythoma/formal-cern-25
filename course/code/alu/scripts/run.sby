@@ -1,0 +1,21 @@
+[tasks]
+cover
+prove
+
+[options]
+depth 20
+
+cover: mode cover
+prove: mode prove
+
+[engines]
+cover: smtbmc z3
+prove: abc pdr
+
+[script]
+ghdl --std=08 -fpsl alu.vhd alu.psl -e alu
+prep -top alu
+
+[files]
+../src_vhdl/alu.vhd
+../src_vhdl/alu.psl

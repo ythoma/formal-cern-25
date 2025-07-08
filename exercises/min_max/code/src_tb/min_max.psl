@@ -1,0 +1,19 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+vunit min_max_psl(min_max_top) {
+
+    signal clk_i : std_logic;
+    default clock is rising_edge(clk_i);
+    
+    -- Could be useful
+    constant ones : std_logic_vector(15 downto 0) := (others => '1');
+
+    -- You can remove the following one. It is just here to have a successful check
+    dummy_assertion: assert always (true);
+
+
+    -- Just a suggestion: What about using a VHDL generate?
+
+}

@@ -1,0 +1,6 @@
+
+vunit counter_psl(counter) {
+
+    default clock is rising_edge(clk_i);
+
+}

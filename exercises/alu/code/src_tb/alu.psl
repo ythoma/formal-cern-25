@@ -1,0 +1,11 @@
+
+vunit alu_psl(alu) {
+
+    signal clk : std_logic;
+
+    default clock is rising_edge(clk);
+
+
+
+}
+

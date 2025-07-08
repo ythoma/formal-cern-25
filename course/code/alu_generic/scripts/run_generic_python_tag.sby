@@ -1,0 +1,37 @@
+[tasks]
+cover SIZE=4
+--pycode-begin--
+values = "1 2 4 16".split();
+for t in values:
+  output("prove{} SIZE={}".format(t, t))
+--pycode-end--
+
+[options]
+depth 20
+
+cover: mode cover
+--pycode-begin--
+for t in tags:
+  if "SIZE=" in t:
+    output("prove{}: mode prove".format(t.replace("SIZE=", "")))
+--pycode-end--
+
+[engines]
+cover: smtbmc z3
+--pycode-begin--
+for t in tags:
+  if "SIZE=" in t:
+    output("prove{}: abc pdr".format(t.replace("SIZE=", "")))
+--pycode-end--
+
+[script]
+--pycode-begin--
+for t in tags:
+  if "SIZE=" in t:
+      output("ghdl --std=08 -g{} -fpsl alu.vhd alu.psl -e alu".format(t))
+--pycode-end--
+prep -top alu
+
+[files]
+../src_vhdl/alu.vhd
+../src_vhdl/alu.psl

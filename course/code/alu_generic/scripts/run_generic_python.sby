@@ -1,0 +1,34 @@
+[tasks]
+cover
+--pycode-begin--
+for t in "1 2 4".split():
+  output("prove{}".format(t))
+--pycode-end--
+
+[options]
+depth 20
+
+cover: mode cover
+--pycode-begin--
+for t in "1 2 4".split():
+  output("prove{}: mode prove".format(t))
+--pycode-end--
+
+[engines]
+cover: smtbmc z3
+--pycode-begin--
+for t in "1 2 4".split():
+  output("prove{}: abc pdr".format(t))
+--pycode-end--
+
+[script]
+--pycode-begin--
+for t in "1 2 4".split():
+  output("prove{}: ghdl --std=08 -gSIZE={} -fpsl alu.vhd alu.psl -e alu".format(t, t))
+--pycode-end--
+cover: ghdl -gSIZE=4 --std=08 -fpsl alu.vhd alu.psl -e alu
+prep -top alu
+
+[files]
+../src_vhdl/alu.vhd
+../src_vhdl/alu.psl
