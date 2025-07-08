@@ -1,0 +1,7 @@
+
+vunit axi4lite_slave_psl(axi4lite_slave) {
+
+    default clock is rising_edge(clk_i);
+
+
+}

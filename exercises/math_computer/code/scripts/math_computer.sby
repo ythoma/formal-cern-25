@@ -1,0 +1,23 @@
+[tasks]
+cover
+prove
+
+[options]
+
+prove: mode prove
+cover: mode cover
+
+[engines]
+cover: smtbmc z3
+prove: abc pdr
+
+[script]
+ghdl --std=08 math_computer_pkg.vhd math_computer_datapath.vhd math_computer_control.vhd math_computer.vhd math_computer.psl -e math_computer
+prep -top math_computer
+
+[files]
+../src/math_computer_pkg.vhd
+../src/math_computer_control.vhd
+../src/math_computer_datapath.vhd
+../src/math_computer.vhd
+../src_tb/math_computer.psl

@@ -1,0 +1,9 @@
+
+
+vunit blackbox_sequencer_psl(blackbox_sequencer) {
+
+
+    -- All is sensitive to rising edge of clk
+    default clock is rising_edge(clk);
+
+}
