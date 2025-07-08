@@ -97,21 +97,21 @@ begin
 
    leds_s1 <= (others=>'0') when ERRNO=16 else
 			(others=>'1') when ERRNO=17 else
-			(0=>not osc_i,others=>'0') when ERRNO=1 and (unsigned(Max_i)<=unsigned(Min_i)) else
-			(1=>not osc_i,others=>'0') when ERRNO=2 and (unsigned(Max_i)<=unsigned(Min_i)) else
-			(2=>not osc_i,others=>'0') when ERRNO=3 and (unsigned(Max_i)<=unsigned(Min_i)) else
-			(3=>not osc_i,others=>'0') when ERRNO=4 and (unsigned(Max_i)<=unsigned(Min_i)) else
-			(4=>not osc_i,others=>'0') when ERRNO=5 and (unsigned(Max_i)<=unsigned(Min_i)) else
-			(5=>not osc_i,others=>'0') when ERRNO=6 and (unsigned(Max_i)<=unsigned(Min_i)) else
-			(6=>not osc_i,others=>'0') when ERRNO=7 and (unsigned(Max_i)<=unsigned(Min_i)) else
-			(7=>not osc_i,others=>'0') when ERRNO=8 and (unsigned(Max_i)<=unsigned(Min_i)) else
-			(8=>not osc_i,others=>'0') when ERRNO=9 and (unsigned(Max_i)<=unsigned(Min_i)) else
-			(9=>not osc_i,others=>'0') when ERRNO=10 and (unsigned(Max_i)<=unsigned(Min_i)) else
-			(10=>not osc_i,others=>'0') when ERRNO=11 and (unsigned(Max_i)<=unsigned(Min_i)) else
-			(11=>not osc_i,others=>'0') when ERRNO=12 and (unsigned(Max_i)<=unsigned(Min_i)) else
-			(12=>not osc_i,others=>'0') when ERRNO=13 and (unsigned(Max_i)<=unsigned(Min_i)) else
-			(13=>not osc_i,others=>'0') when ERRNO=14 and (unsigned(Max_i)<=unsigned(Min_i)) else
-			(15=>not osc_i,others=>'0') when ERRNO=15 and (unsigned(Max_i)<=unsigned(Min_i)) else
+			(0=>not osc_i,others=>'0') when ERRNO=1 and (Com_i="00") and (unsigned(Max_i)<=unsigned(Min_i)) else
+			(1=>not osc_i,others=>'0') when ERRNO=2 and (Com_i="00") and (unsigned(Max_i)<=unsigned(Min_i)) else
+			(2=>not osc_i,others=>'0') when ERRNO=3 and (Com_i="00") and (unsigned(Max_i)<=unsigned(Min_i)) else
+			(3=>not osc_i,others=>'0') when ERRNO=4 and (Com_i="00") and (unsigned(Max_i)<=unsigned(Min_i)) else
+			(4=>not osc_i,others=>'0') when ERRNO=5 and (Com_i="00") and (unsigned(Max_i)<=unsigned(Min_i)) else
+			(5=>not osc_i,others=>'0') when ERRNO=6 and (Com_i="00") and (unsigned(Max_i)<=unsigned(Min_i)) else
+			(6=>not osc_i,others=>'0') when ERRNO=7 and (Com_i="00") and (unsigned(Max_i)<=unsigned(Min_i)) else
+			(7=>not osc_i,others=>'0') when ERRNO=8 and (Com_i="00") and (unsigned(Max_i)<=unsigned(Min_i)) else
+			(8=>not osc_i,others=>'0') when ERRNO=9 and (Com_i="00") and (unsigned(Max_i)<=unsigned(Min_i)) else
+			(9=>not osc_i,others=>'0') when ERRNO=10 and (Com_i="00") and (unsigned(Max_i)<=unsigned(Min_i)) else
+			(10=>not osc_i,others=>'0') when ERRNO=11 and (Com_i="00") and (unsigned(Max_i)<=unsigned(Min_i)) else
+			(11=>not osc_i,others=>'0') when ERRNO=12 and (Com_i="00") and (unsigned(Max_i)<=unsigned(Min_i)) else
+			(12=>not osc_i,others=>'0') when ERRNO=13 and (Com_i="00") and (unsigned(Max_i)<=unsigned(Min_i)) else
+			(13=>not osc_i,others=>'0') when ERRNO=14 and (Com_i="00") and (unsigned(Max_i)<=unsigned(Min_i)) else
+			(15=>not osc_i,others=>'0') when ERRNO=15 and (Com_i="00") and (unsigned(Max_i)<=unsigned(Min_i)) else
 			(1=>'1',others=>'0') when ERRNO=18 and (Com_i="10") else
 			(2=>'0',others=>'1') when ERRNO=19 and (Com_i="11") else
 			(1=>'1',others=>'0') when ERRNO=20 and (Com_i="01")
