@@ -1,0 +1,7 @@
+
+
+vunit onectr_nomem_psl(onectr_nomem) {
+
+    default clock is rising_edge(clk);
+
+}

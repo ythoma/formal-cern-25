@@ -1,0 +1,7 @@
+
+
+vunit programcounter_psl(programcounter) {
+
+    default clock is rising_edge(clk);
+
+}

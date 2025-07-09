@@ -1,0 +1,7 @@
+
+
+vunit datapath_psl(datapath) {
+
+    default clock is rising_edge(clk);
+
+}

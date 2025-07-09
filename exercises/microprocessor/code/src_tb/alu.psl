@@ -1,0 +1,7 @@
+
+
+vunit alu_psl(alu) {
+
+    default clock is rising_edge(clk);
+
+}

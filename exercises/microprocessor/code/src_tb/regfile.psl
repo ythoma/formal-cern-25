@@ -1,0 +1,7 @@
+
+
+vunit regfile_psl(regfile) {
+
+    default clock is rising_edge(clk);
+
+}
