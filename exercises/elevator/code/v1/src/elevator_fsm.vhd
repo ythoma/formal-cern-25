@@ -86,6 +86,10 @@ begin
                     n_state_s <= F1ARRIVING;
                 end if;
 
+                if (ERRNO = 6) then
+                    n_state_s <= F0OPEN;
+                end if;
+
             when F0OPEN =>
                 open_o <= '1';
                 floor0_o <= '1';
