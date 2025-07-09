@@ -1,0 +1,42 @@
+
+vunit counter_psl(counter) {
+
+    default clock is rising_edge(clk_i);
+
+    --assume rst_i;
+
+    -- Can try any of the following:
+    -- Nothing
+    -- assume {rst_i; not rst_i};
+    -- assume rst_i;
+    -- assume to_integer(unsigned(Value_o)) < 100;
+
+
+    incr1: assert always ((
+                         (En_i and up_ndown_i) 
+                         ->
+                         next (Value_o=std_logic_vector(unsigned(prev(Value_o))+1))
+                         ) abort rst_i);
+    decr1: assert always (
+                          (En_i and (not up_ndown_i))
+                          ->
+                          next (Value_o=std_logic_vector(unsigned(prev(Value_o))-1))
+                         ) abort rst_i;
+    
+    hold1: assert always (
+                          (not En_i)
+                          ->
+                          next (Value_o=prev(Value_o))
+                         ) abort rst_i;
+    
+
+
+
+
+
+
+
+    reset1: assert always (rst_i -> (unsigned(Value_o) = 0));
+
+    reset2: assert ((rst_i = '0') or (unsigned(Value_o) = 0));
+}
