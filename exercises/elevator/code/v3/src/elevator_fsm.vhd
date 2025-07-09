@@ -129,6 +129,7 @@ begin
 
             when F1ARRIVING =>
                 n_state_s <= F1OPEN;
+                counter_init_o <= '1';
 
         end case;
 
