@@ -1,0 +1,31 @@
+use work.bpm_pkg.all;
+
+
+-- We can bind to the architecture if we want to access internal signals
+vunit bpm_psl(bpm(behave)) {
+
+    default clock is rising_edge(clk_i);
+
+    --assume {rst_i};
+    assume {state_s = READY};
+
+    property prop_1100_stable is always (
+        {present_q_o /= "1100";present_q_o = "1100"} 
+        |->
+         (present_q_o = "1100")[*4]) abort rst_i;
+    assert prop_1100_stable report "1100 state not stable";
+
+
+    property prop_1100_stable2 is always (
+        {present_q_o /= "1100";present_q_o = "1100"} 
+        |->
+         {[*1];stable(present_q_o)[*3]}) abort rst_i;
+    assert prop_1100_stable2 report "1100 state not stable2";
+
+    property prop_1100_stable3 is always (
+        {present_q_o /= "1100";present_q_o = "1100"} 
+        |=>
+         stable(present_q_o)[*CONST_MIN_OT_TIME-1]) abort rst_i;
+    assert prop_1100_stable3 report "1100 state not stable2";
+
+}

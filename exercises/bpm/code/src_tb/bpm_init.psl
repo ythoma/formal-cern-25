@@ -1,0 +1,12 @@
+use work.bpm_pkg.all;
+
+
+-- We can bind to the architecture if we want to access internal signals
+vunit bpm_init_psl(bpm(behave)) {
+    
+    default clock is rising_edge(clk_i);
+
+    --assume {rst_i};
+    assume {state_s = READY};
+
+}
