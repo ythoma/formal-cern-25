@@ -5,7 +5,8 @@ vunit alu_psl(alu) {
 
     default clock is rising_edge(clk);
 
-
+    -- Fake assertion, just make it pass. You can remove it when you start adding you own ones
+    assert always ((mode_i = "000") and (unsigned(s_o) = 0)) -> (unsigned(s_o) = 0);
 
 }
 

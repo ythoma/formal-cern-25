@@ -9,16 +9,19 @@ sby --yosys "yosys -m ghdl" -f elevator_fsm.sby
 
 or
 
-sby --yosys "yosys -m ghdl" -f elevator_fsm.sby bmc
+sby --yosys "yosys -m ghdl" -f elevator_fsm.sby bmcX
 
 or
 
-sby --yosys "yosys -m ghdl" -f elevator_fsm.sby prove
+sby --yosys "yosys -m ghdl" -f elevator_fsm.sby proveX
 
 or
 
 sby --yosys "yosys -m ghdl" -f elevator_fsm.sby cover
 
+When running the proveX or bmcX, replace the X by a numerical value between 0 and 6. For 0
+the tests are expected to succeed, and for 1 to 6 they should fail, as the design will have internal
+errors.
 
 The script will compile the sequences, the assertions, and
 formally verify that the properties hold (using prove, bmc, just checking coverage or all three).

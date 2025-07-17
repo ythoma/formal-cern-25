@@ -37,12 +37,12 @@ generic(
     ERRNO : integer := 0
 );
 port(
-    clk : in std_logic;
-    rst : in std_logic;
-    start: in std_logic;
-    mode: in std_logic;
-    trigger: out std_logic;
-    value: out std_logic_vector(7 downto 0)
+    clk_i     : in  std_logic;
+    rst_i     : in  std_logic;
+    start_i   : in  std_logic;
+    mode_i    : in  std_logic;
+    trigger_o : out std_logic;
+    value_o   : out std_logic_vector(7 downto 0)
 );
 end timer;
 
@@ -54,19 +54,29 @@ architecture behave of timer is
     
 begin
 
-    process(clk, rst) is
+/*
+    ERRNO:
+    0: no error
+    1: error
+    2: error
+    3: error on value
+    4: error
+    5: error
+*/    
+
+    process(clk_i, rst_i) is
     begin
-        if rst = '1' then
+        if rst_i = '1' then
             count <= to_unsigned(0, 8);
             finished <= '1';
-            trigger <= '0';
-        elsif rising_edge(clk) then
-            if start = '1' then
+            trigger_o <= '0';
+        elsif rising_edge(clk_i) then
+            if start_i = '1' then
                 finished <= '0';
                 if ERRNO /= 4 then
-                    trigger <= '0';
+                    trigger_o <= '0';
                 end if;
-                if mode = '0' then
+                if mode_i = '0' then
                     if ERRNO = 1 then
                         count <= to_unsigned(4, 8);
                     elsif ERRNO = 2 then
@@ -88,13 +98,13 @@ begin
                     end if;
                 end if;
                 if ((finished = '0') and (count = 1)) or ((ERRNO = 3) and (finished = '0') and (count = 2)) or ((ERRNO = 5) and (finished = '0') and (count = 3)) then
-                    trigger <= '1';
+                    trigger_o <= '1';
                     finished <= '1';
                 end if;
             end if;
         end if;
     end process;
 
-    value <= std_logic_vector(count);
+    value_o <= std_logic_vector(count);
 
 end behave;

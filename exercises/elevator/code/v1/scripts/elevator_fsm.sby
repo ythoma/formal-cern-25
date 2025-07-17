@@ -1,15 +1,28 @@
 [tasks]
 cover
-bmc
-prove
+bmc0 bmc ERRNO0
+bmc1 bmc ERRNO1 shouldfail
+bmc2 bmc ERRNO2 shouldfail
+bmc3 bmc ERRNO3 shouldfail
+bmc4 bmc ERRNO4 shouldfail
+bmc5 bmc ERRNO5 shouldfail
+bmc6 bmc ERRNO6 shouldfail
+prove0 prove ERRNO0
+prove1 prove ERRNO1 shouldfail
+prove2 prove ERRNO2 shouldfail
+prove3 prove ERRNO3 shouldfail
+prove4 prove ERRNO4 shouldfail
+prove5 prove ERRNO5 shouldfail
+prove6 prove ERRNO6 shouldfail
 
 [options]
-mode bmc
 depth 300
 
 cover: mode cover
 bmc: mode bmc
 prove: mode prove
+
+shouldfail: expect fail
 
 [engines]
 cover: smtbmc z3
@@ -17,7 +30,26 @@ bmc: abc bmc3
 prove: abc pdr
 
 [script]
-ghdl --std=08 -fpsl -gERRNO=0 elevator_fsm.vhd elevator_fsm.psl -e elevator_fsm
+
+bmc0: ghdl --std=08 -fpsl -gERRNO=0 elevator_fsm.vhd elevator_fsm.psl -e elevator_fsm
+bmc1: ghdl --std=08 -fpsl -gERRNO=1 elevator_fsm.vhd elevator_fsm.psl -e elevator_fsm
+bmc2: ghdl --std=08 -fpsl -gERRNO=2 elevator_fsm.vhd elevator_fsm.psl -e elevator_fsm
+bmc3: ghdl --std=08 -fpsl -gERRNO=3 elevator_fsm.vhd elevator_fsm.psl -e elevator_fsm
+bmc4: ghdl --std=08 -fpsl -gERRNO=4 elevator_fsm.vhd elevator_fsm.psl -e elevator_fsm
+bmc5: ghdl --std=08 -fpsl -gERRNO=5 elevator_fsm.vhd elevator_fsm.psl -e elevator_fsm
+bmc6: ghdl --std=08 -fpsl -gERRNO=6 elevator_fsm.vhd elevator_fsm.psl -e elevator_fsm
+
+prove0: ghdl --std=08 -fpsl -gERRNO=0 elevator_fsm.vhd elevator_fsm.psl -e elevator_fsm
+prove1: ghdl --std=08 -fpsl -gERRNO=1 elevator_fsm.vhd elevator_fsm.psl -e elevator_fsm
+prove2: ghdl --std=08 -fpsl -gERRNO=2 elevator_fsm.vhd elevator_fsm.psl -e elevator_fsm
+prove3: ghdl --std=08 -fpsl -gERRNO=3 elevator_fsm.vhd elevator_fsm.psl -e elevator_fsm
+prove4: ghdl --std=08 -fpsl -gERRNO=4 elevator_fsm.vhd elevator_fsm.psl -e elevator_fsm
+prove5: ghdl --std=08 -fpsl -gERRNO=5 elevator_fsm.vhd elevator_fsm.psl -e elevator_fsm
+prove6: ghdl --std=08 -fpsl -gERRNO=6 elevator_fsm.vhd elevator_fsm.psl -e elevator_fsm
+
+# For cover:
+cover: ghdl --std=08 -fpsl -gERRNO=0 elevator_fsm.vhd elevator_fsm.psl -e elevator_fsm
+
 prep -top elevator_fsm
 
 [files]

@@ -1,11 +1,24 @@
 [tasks]
 cover
-prove
+prove0 prove
+prove1 prove
+prove3 prove
+prove7 prove
+prove9 prove
+prove12 prove
+prove16 prove expect_fail
+prove17 prove expect_fail
+prove18 prove expect_fail
+prove19 prove expect_fail
+prove20 prove expect_fail
+prove21 prove expect_fail
 
 [options]
 
 prove: mode prove
 cover: mode cover
+
+expect_fail: expect fail
 
 [engines]
 cover: smtbmc z3
@@ -15,7 +28,19 @@ prove: abc pdr
 ghdl --std=08 --work=aff_min_max affichage.vhd -e affichage
 ghdl --std=08 --work=aff_min_max bin_lin.vhd -e bin_lin
 ghdl --std=08 --work=aff_min_max comparator_8bits.vhd -e comparator_4bits
-ghdl --std=08 -gERRNO=0 min_max_top.vhd min_max.psl -e min_max_top
+cover: ghdl --std=08 -gERRNO=0 min_max_top.vhd min_max.psl -e min_max_top
+prove0: ghdl --std=08 -gERRNO=0 min_max_top.vhd min_max.psl -e min_max_top
+prove1: ghdl --std=08 -gERRNO=1 min_max_top.vhd min_max.psl -e min_max_top
+prove3: ghdl --std=08 -gERRNO=3 min_max_top.vhd min_max.psl -e min_max_top
+prove7: ghdl --std=08 -gERRNO=7 min_max_top.vhd min_max.psl -e min_max_top
+prove9: ghdl --std=08 -gERRNO=9 min_max_top.vhd min_max.psl -e min_max_top
+prove12: ghdl --std=08 -gERRNO=12 min_max_top.vhd min_max.psl -e min_max_top
+prove16: ghdl --std=08 -gERRNO=16 min_max_top.vhd min_max.psl -e min_max_top
+prove17: ghdl --std=08 -gERRNO=17 min_max_top.vhd min_max.psl -e min_max_top
+prove18: ghdl --std=08 -gERRNO=18 min_max_top.vhd min_max.psl -e min_max_top
+prove19: ghdl --std=08 -gERRNO=19 min_max_top.vhd min_max.psl -e min_max_top
+prove20: ghdl --std=08 -gERRNO=20 min_max_top.vhd min_max.psl -e min_max_top
+prove21: ghdl --std=08 -gERRNO=21 min_max_top.vhd min_max.psl -e min_max_top
 prep -top Min_Max_top
 
 [files]

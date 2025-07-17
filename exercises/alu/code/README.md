@@ -9,11 +9,13 @@ sby --yosys "yosys -m ghdl" -f alu.sby
 
 or
 
-sby --yosys "yosys -m ghdl" -f alu.sby prove
+sby --yosys "yosys -m ghdl" -f alu.sby proveX
 
 or
 
 sby --yosys "yosys -m ghdl" -f alu.sby cover
+
+When running the proveX, replace the X by a numerical value: 0, 1, 3, 7, 9 or 12 for correct designs. For values from 16 to 24 the tests are expected to fail, as the design will have internal errors.
 
 
 The script will compile the sequences, the assertions, and

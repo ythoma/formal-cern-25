@@ -3,4 +3,6 @@ vunit counter_psl(counter) {
 
     default clock is rising_edge(clk_i);
 
+    -- Fake assertion, just make it pass. You can remove it when you start adding you own ones
+    assert always (((unsigned(value_o) = 0) and (en_i='1')) -> (((unsigned(value_o) = 0))));
 }

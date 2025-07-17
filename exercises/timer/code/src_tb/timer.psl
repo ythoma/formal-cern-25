@@ -5,7 +5,11 @@ use ieee.numeric_std.all;
 
 vunit timer_psl(timer) {
 
-    default clock is rising_edge(clk);
+    default clock is rising_edge(clk_i);
+
+    -- Fake assertion, just make it pass. You can remove it when you start adding you own ones
+    assert always (((unsigned(value_o) = 0) and (mode_i='1')) -> (((unsigned(value_o) = 0))));
+
 
 }
 

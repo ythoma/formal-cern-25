@@ -1,18 +1,26 @@
 [tasks]
-cover
-prove
+bmcd: bmc datapath
+bmcp: bmc pipeline
+coverd: cover datapath
+coverp: cover pipeline
+proved: prove datapath
+provep: prove pipeline
 
 [options]
 
+bmc: mode bmc
 prove: mode prove
 cover: mode cover
 
 [engines]
+bmc: abc bmc3
 cover: smtbmc z3
 prove: abc pdr
+# It seems that cover with  btor btormc   fails
 
 [script]
-ghdl --std=08 math_computer_pkg.vhd math_computer_datapath.vhd math_computer_control.vhd math_computer.vhd math_computer.psl -e math_computer
+datapath: ghdl --std=08 math_computer_pkg.vhd math_computer_datapath.vhd math_computer_control.vhd math_computer.vhd math_computer_only_datapath.psl math_computer.psl -e math_computer
+pipeline: ghdl --std=08 math_computer_pkg.vhd math_computer_pipeline.vhd math_computer_only_pipeline.psl math_computer.psl -e math_computer
 prep -top math_computer
 
 [files]
@@ -20,4 +28,7 @@ prep -top math_computer
 ../src/math_computer_control.vhd
 ../src/math_computer_datapath.vhd
 ../src/math_computer.vhd
+../src/math_computer_pipeline.vhd
 ../src_tb/math_computer.psl
+../src_tb/math_computer_only_datapath.psl
+../src_tb/math_computer_only_pipeline.psl

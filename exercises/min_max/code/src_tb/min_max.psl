@@ -14,6 +14,6 @@ vunit min_max_psl(min_max_top) {
     dummy_assertion: assert always (true);
 
 
-    -- Just a suggestion: What about using a VHDL generate?
+    -- Just a suggestion: What about using a VHDL generate for checking each led?
 
 }

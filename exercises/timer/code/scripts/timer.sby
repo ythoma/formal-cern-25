@@ -1,7 +1,17 @@
 [tasks]
-cover
-bmc
-prove
+cover ERRNO0
+bmc0 ERRNO0 bmc
+bmc1 ERRNO1 bmc expect_fail
+bmc2 ERRNO2 bmc expect_fail
+bmc3 ERRNO3 bmc expect_fail
+bmc4 ERRNO4 bmc expect_fail
+bmc5 ERRNO5 bmc expect_fail
+prove0 ERRNO0 prove
+prove1 ERRNO1 prove expect_fail
+prove2 ERRNO2 prove expect_fail
+prove3 ERRNO3 prove expect_fail
+prove4 ERRNO4 prove expect_fail
+prove5 ERRNO5 prove expect_fail
 
 [options]
 mode bmc
@@ -11,13 +21,20 @@ cover: mode cover
 bmc: mode bmc
 prove: mode prove
 
+expect_fail: expect fail
+
 [engines]
 cover: smtbmc z3
 bmc: abc bmc3
 prove: abc pdr
 
 [script]
-ghdl --std=08 -fpsl -gERRNO=0 timer.vhd timer.psl -e timer
+ERRNO0: ghdl --std=08 -fpsl -gERRNO=0 timer.vhd timer.psl -e timer
+ERRNO1: ghdl --std=08 -fpsl -gERRNO=1 timer.vhd timer.psl -e timer
+ERRNO2: ghdl --std=08 -fpsl -gERRNO=2 timer.vhd timer.psl -e timer
+ERRNO3: ghdl --std=08 -fpsl -gERRNO=3 timer.vhd timer.psl -e timer
+ERRNO4: ghdl --std=08 -fpsl -gERRNO=4 timer.vhd timer.psl -e timer
+ERRNO5: ghdl --std=08 -fpsl -gERRNO=5 timer.vhd timer.psl -e timer
 prep -top timer
 
 [files]

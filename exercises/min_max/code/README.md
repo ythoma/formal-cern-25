@@ -9,11 +9,13 @@ sby --yosys "yosys -m ghdl" -f min_max.sby
 
 or
 
-sby --yosys "yosys -m ghdl" -f min_max.sby prove
+sby --yosys "yosys -m ghdl" -f min_max.sby proveX
 
 or
 
 sby --yosys "yosys -m ghdl" -f min_max.sby cover
+
+When running the proveX, replace the X by a numerical value: 0, 1, 3, 7, 9 or 12 for correct designs. For values from 16 to 21 the tests are expected to fail, as the design will have internal errors.
 
 
 The script will compile the sequences, the assertions, and

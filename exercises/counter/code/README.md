@@ -9,16 +9,19 @@ sby --yosys "yosys -m ghdl" -f counter.sby
 
 or
 
-sby --yosys "yosys -m ghdl" -f counter.sby prove
+sby --yosys "yosys -m ghdl" -f counter.sby proveX
 
 or
 
-sby --yosys "yosys -m ghdl" -f counter.sby bmc
+sby --yosys "yosys -m ghdl" -f counter.sby bmcX
 
 or
 
 sby --yosys "yosys -m ghdl" -f counter.sby cover
 
+When running the proveX or bmcX, replace the X by a numerical value between 0 and 4. For 0
+the tests are expected to succeed, and for 1 to 4 they should fail, as the design will have internal
+errors.
 
 The script will compile the sequences, the assertions, and
 formally verify that the properties hold (using prove, bmc, or just checking coverage or all three).

@@ -6,5 +6,6 @@ vunit elevator_fsm_psl(elevator_fsm(fsm)) {
 
     assume {rst_i};
 
+    assert always (call0_i -> true);
 }
 
